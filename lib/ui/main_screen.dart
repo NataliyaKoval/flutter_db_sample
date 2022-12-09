@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_db/bloc/bloc.dart';
 import 'package:test_db/bloc/events.dart';
 import 'package:test_db/bloc/states.dart';
-import 'package:test_db/model/user.dart';
+import 'package:test_db/ui/user_form.dart';
+import 'package:test_db/ui/users_list.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -14,57 +15,29 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   @override
-  Widget build(BuildContext context) {
-    // BlocBuilder, BlocConsumer
-    return BlocListener<UsersBloc, UsersState>(
-      listener: (BuildContext context, state) {
-        if (state is UsersLoadedState) {
-          print(state.users);
-        }
-      },
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ElevatedButton(
-              onPressed: _addTestValues,
-              child: const Text('Add test users'),
-            ),
-            ElevatedButton(
-              onPressed: _printUsers,
-              child: const Text('Print users'),
-            ),
-          ],
-        ),
-      ),
-    );
+  void initState() {
+    super.initState();
+    _printUsers();
   }
 
-  void _addTestValues() {
-    final bloc = BlocProvider.of<UsersBloc>(context);
-    bloc.add(
-      AddUserEvent(
-        User(
-          name: 'Alex',
-          age: 22,
-        ),
-      ),
-    );
-    bloc.add(
-      AddUserEvent(
-        User(
-          name: 'Ben',
-          age: 33,
-        ),
-      ),
-    );
-    bloc.add(
-      AddUserEvent(
-        User(
-          name: 'Carl',
-          age: 44,
-        ),
-      ),
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        const UserForm(),
+        BlocBuilder<UsersBloc, UsersState>(
+            builder: (BuildContext context, state) {
+          if (state is UsersLoadedState) {
+            return Expanded(
+              child: UsersList(
+                users: state.users,
+              ),
+            );
+          } else {
+            return const Text('No users');
+          }
+        }),
+      ],
     );
   }
 
