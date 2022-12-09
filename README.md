@@ -1,16 +1,6 @@
-# test_db
+# Flutter Database Sample
 
-A new Flutter project.
+A Flutter project that has form for adding users and displays list of added users below:
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![photo_2022-12-09_20-03-50](https://user-images.githubusercontent.com/69919727/206778115-02247cd7-0915-4b49-8b1a-983838741f1d.jpg) 
+![photo_2022-12-09_20-03-58](https://user-images.githubusercontent.com/69919727/206778414-1a6899f8-1644-4e2d-b7d1-35d0101686d2.jpg)
